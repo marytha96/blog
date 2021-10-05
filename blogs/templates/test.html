@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block body %}
+
+    <!-- Hero Section Begin -->
+    <section class="hero">
+      <div class="hero__slider owl-carousel">
+         {% for slide in slider_show %}
+
+          <div class="hero__items set-bg" data-setbg="{{slide.slide_image.url}}">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-xl-5 col-lg-7 col-md-8">
+                          <div class="hero__text">
+                              <h6>{{slide.slide_title}}</h6>
+                              <h2>{{slide.slide_sub_title}}</h2>
+                              <p>{{slide.slide_text}}</p>
+                              <!-- <a href="#" class="primary-btn">Shop now <span class="arrow_right"></span></a> -->
+                              <div class="hero__social">
+                                  <a href="{{slide.slide_facebook}}"><i class="fa fa-facebook"></i></a>
+                                  <a href="{{slide.slide_twitter}}"><i class="fa fa-twitter"></i></a>
+                                  <a href="{{slide.slide_instagram}}"><i class="fa fa-instagram"></i></a>
+                                  <a href="{{slide.slide_linkedIn}}"><i class="fa fa-instagram"></i></a>
+
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+
+      </div>
+  </section>
+  <!-- Hero Section End -->
+
+    <!-- Instagram Section Begin -->
+    <section class="instagram spad">
+      <div class="container">
+          <div class="row">
+            {% for insta in instagram %}
+              <div class="col-lg-8">
+                  <div class="instagram__pic">
+                      <div class="instagram__pic__item set-bg" data-setbg="{{insta.insta_facebook1.url}}"></div>
+                      <div class="instagram__pic__item set-bg" data-setbg="{{insta.insta_facebook2.url}}"></div>
+                      <div class="instagram__pic__item set-bg" data-setbg="{{insta.insta_facebook3.url}}"></div>
+                      <div class="instagram__pic__item set-bg" data-setbg="{{insta.insta_facebook4.url}}"></div>
+                      <div class="instagram__pic__item set-bg" data-setbg="{{insta.insta_facebook5.url}}"></div>
+                      <div class="instagram__pic__item set-bg" data-setbg="{{insta.insta_facebook6.url}}"></div>
+                  </div>
+              </div>
+              <div class="col-lg-4">
+                  <div class="instagram__text">
+                      <h2>Instagram</h2>
+                      <p>{{insta.insta_desc}}</p>
+                      <h3>#{{insta.insta_hash}}</h3>
+                  </div>
+              </div>
+          </div>
+          {% endfor %}
+      </div>
+  </section>
+  <!-- Instagram Section End -->
+  
+    <!-- Latest Blog Section Begin -->
+    <section class="latest spad">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-12">
+                  <div class="section-title">
+                      <span>Latest Blogs</span>
+                      <h2>Learn more with us</h2>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              
+            {% for blog in blog %}
+            {% if forloop.counter < 4 %}
+            <div class="col-lg-4 col-md-6 col-sm-6">
+               <div class="blog__item">
+                   <div class="blog__item__pic set-bg" data-setbg="{{blog.blog_image_one.url}}"></div>
+                   <div class="blog__item__text">
+                       <span><img src="img/icon/calendar.png" alt=""> {{blog.blog_date|date:'d M o'}}</span>
+                       <h5>{{blog.blog_name}}</h5>
+                       <p> {{blog.blog_desc1}}</p>
+                       <a href="{% url 'blogs:blog_detail' blog.id %}" class="default-link"> READ MORE</a>
+                   </div>
+               </div>
+           </div>
+           {% endif %} {% endfor %}
+          </div>
+      </div>
+  </section>
+  <!-- Latest Blog Section End -->
+
+    {% endblock body %}
