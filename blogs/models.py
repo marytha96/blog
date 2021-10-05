@@ -11,7 +11,6 @@ class BlogBackgroundImage(models.Model):
     bg_image_blog = models.FileField(
         validators=[validate_image_extension], upload_to='background/blogs/',default='', blank=True)
 
-
 class Slider(models.Model):
     id = models.BigAutoField(primary_key=True)
 

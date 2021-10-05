@@ -57,10 +57,14 @@ def contact(request):
         print("hello")
         name = request.POST.get('full_name')
         email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        subject = request.POST.get('subject')
         message = request.POST.get('message')
         data = {
             'name': name,
             'email' : email,
+        'phone' : phone,
+        'subject' : subject,
             'message' : message,
         }
         print(data)
@@ -68,11 +72,15 @@ def contact(request):
         message = ''' 
         New message :{}
         From: {}
-        '''.format(data['message'], data['email'])
+        
+        Email: {}
+        phone: {}
+        Message: {}
+        '''.format(data['subject'], data['name'],data['email'],data['phone'],data['message'])
 
         if name and message and email:
             try:
-                send_mail(data['name'], message, from_email= 'techs.maryam@gmail.com',recipient_list= ['tecdhs.maryam@gmail.com'],  fail_silently=False)
+                send_mail(data['name'], message, from_email= 'techs.maryam@gmail.com',recipient_list= ['techs.maryam@gmail.com'],  fail_silently=False)
 
             except  Exception as error:
                 return HttpResponse('Invalid header found.')
